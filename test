@@ -1,0 +1,9 @@
+  const [saisieNomEntreprise, setSaisieNomEntreprise] = useState("");
+  const [saisieAdresse, setSaisieAdresse] = useState("");
+  const [saisiePenom, setSaisiePronom] = useState("");
+  const [saisieNom, setSaisieNom] = useState("");
+  const [saisieTelephone, setSaisieTelephone] = useState("");
+  const [saisiePostTelephone, setSaisiePostTelephone] = useState("");
+  const [saisieCourriel, setSaisieCourriel] = useState("");
+  const [saisieMotDePasse, setSaisieMotDePasse] = useState("");
+  //const [saisieStage, setSaisieStage] = useState("");

@@ -51,7 +51,7 @@ const getStagesEmployeur = async (requete, reponse, next) => {
 }
 
 const ajouterEmployeurStage = async (requete, reponse, next) => {
-    const { nom, courriel, telephone, typeStage, adresse, description, remuneration} = requete.body;
+    const { nom, courriel, telephone, adresse, description, remuneration} = requete.body;
 
     const nouveauStage = new Stage({
         nom,
@@ -59,8 +59,6 @@ const ajouterEmployeurStage = async (requete, reponse, next) => {
         courriel,
     
         telephone,
-    
-        typeStage,
     
         adresse,
     

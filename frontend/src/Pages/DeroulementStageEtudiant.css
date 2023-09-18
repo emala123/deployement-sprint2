@@ -1,0 +1,36 @@
+/* Appliquer un style de base pour tous les éléments */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    
+  }
+  
+  /* Styliser le titre principal */
+  h2 {
+    font-size: 2rem;
+    margin: 1rem 0;
+  }
+  
+  /* Styliser le sous-titre */
+  h4 {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+  }
+  
+  /* Styliser le contenu des paragraphes */
+  p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin: 0.5rem 0;
+    
+  }
+  
+  /* Ajouter de l'espace après les liens */
+  a {
+    margin-bottom: 1rem;
+  }
+
+.text{
+    color: black;
+}

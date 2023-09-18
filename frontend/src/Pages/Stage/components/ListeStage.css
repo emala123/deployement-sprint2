@@ -1,0 +1,62 @@
+.liste-stage-container {
+    padding: 20px;
+  }
+  
+  .liste-stage-container ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .liste-stage-container li {
+    margin-bottom: 10px;
+  }
+  
+  .stage-info {
+    background-color: #f2f2f2;
+    padding: 10px;
+  }
+  
+  .stage-info h4 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .stage-info p {
+    margin: 0;
+    font-size: 14px;
+  }
+  
+  .stage-info .nom {
+    color: #333;
+  }
+  
+  .stage-info .courriel {
+    color: #777;
+  }
+  
+  .stage-info .entreprise {
+    color: #333;
+  }
+  
+  .stage-info .adresse {
+    color: #777;
+  }
+  
+  .stage-info .type-stage {
+    color: #333;
+  }
+  
+  .stage-info .nombre-poste {
+    color: #777;
+  }
+  
+  .stage-info .description {
+    color: #333;
+  }
+  
+  .stage-info .remuneration {
+    color: #777;
+  }
+  
