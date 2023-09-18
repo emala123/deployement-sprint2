@@ -7,6 +7,6 @@ router.get("/", controleursStages.getToutLesStages);
 
 router.get("/:employeurId", controleursStages.getStagesEmployeur);
 
-router.post("/ajouterStage/:employeurId", controleursEmployeurs.ajouterEmployeurStage);
+router.post("/ajouterStage/:employeurId", controleursStages.ajouterEmployeurStage);
 
 module.exports = router;

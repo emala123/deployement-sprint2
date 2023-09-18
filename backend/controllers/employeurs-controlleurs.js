@@ -38,7 +38,7 @@ const inscription = async (requete, reponse, next) => {
         await nouvelEmployeur.save();
       } catch (err) {
         console.log(err);
-        return next(new HttpErreur("Erreur lors de l'ajout de l'employeur", 422));
+        return next(new Erreur("Erreur lors de l'ajout de l'employeur", 422));
       }
       reponse
     .status(201)
