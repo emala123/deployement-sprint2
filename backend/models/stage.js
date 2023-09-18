@@ -9,7 +9,6 @@ const stageSchema = new Schema({
     typeStage: {type: String, required:true},
     adresse: {type: String, required:true, unique:true},
     description: {type: String, required:true},
-    typeRemuneration: {type: String, required:true},
     remuneration: {type: String, required:true}
 })
 

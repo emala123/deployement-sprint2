@@ -48,5 +48,3 @@ app.use((requete, reponse, next) => {
     console.log(erreur);
 });
 
-//app.listen(5000);
-
