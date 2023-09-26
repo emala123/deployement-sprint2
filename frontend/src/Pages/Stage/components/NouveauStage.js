@@ -17,7 +17,7 @@ function NouveauStage({ adresseMethode }) {
 
     try {
       const reponseData = await sendRequest(
-        "http://localhost:5000/stages/ajoutStage",
+        "http://localhost:5000/stages/ajouterUnStage",
         "POST",
         JSON.stringify({
           nom: saisieNomEntreprise,
@@ -55,6 +55,7 @@ function NouveauStage({ adresseMethode }) {
       alert("Veuillez saisir une renumeration");
       return;
     } else {
+      window.location.reload();
       const nouveauStage = {
         nomEntreprise: saisieNomEntreprise ,
         courriel: saisieCourriel,

@@ -96,6 +96,32 @@ const ajouterEmployeurStage = async (requete, reponse, next) => {
       reponse.status(201).json({ stage: nouveauStage });
 }
 
+
+const ajouterStage = async (requete, reponse, next) => {
+  const { nom, courriel, telephone, adresse, description, remuneration } = requete.body;
+
+  const nouveauStage = new Stage({
+    nom,
+    courriel,
+    telephone,
+    adresse,
+    description,
+    remuneration
+  });
+
+  try {
+    await nouveauStage.save();
+  } catch (err) {
+    const erreur = new HttpErreur("Création du stage échouée", 500);
+    return next(erreur);
+  }
+
+  reponse.status(201).json({ stage: nouveauStage });
+};
+
+
+
 exports.getToutLesStages = getToutLesStages;
 exports.getStagesEmployeur = getStagesEmployeur;
 exports.ajouterEmployeurStage = ajouterEmployeurStage;
+exports.ajouterStage = ajouterStage;
