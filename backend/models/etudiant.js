@@ -6,7 +6,7 @@ const etudiantSchema = new Schema({
     nom : {type:String, required: true},
     courriel: {type: String, required: true, unique:true},
     adresse: {type:String, required:true, unique:true},
-    motDePasse: {type: String, required: true, minLength: 6},
+    motDePasse: {type: String, required: true},
     telephone: {type:String, required:true, unique: true},
 })
 

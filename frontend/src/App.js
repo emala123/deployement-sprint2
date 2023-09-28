@@ -1,68 +1,122 @@
-import React from "react";
-
-import "./App.css";
-import Acceuil from "./Pages/Acceuil";
+import React, { useState, useCallback } from 'react';
 import {
   BrowserRouter as Router,
   Route,
   Redirect,
-  Switch,
-} from "react-router-dom";
-import MainNavigation from "./shared/components/Navigation/MainNavigation";
-import Footer from "./shared/components/Footer/Footer";
-import Faq from "./Pages/FAQ";
-import ProfisEtCompetence from "./Pages/ProflsEtCompetences";
-import DeroulementStageEtudiant from "./Pages/DeroulementStageEtudiant";
-import Stage from "./Pages/Stage/Stage";
-import Etudiant from "./Pages/Etudiant/Etudiant";
-import Employeur from "./Pages/Employeur/Employeur";
-import AuthenticationPage from './Pages/Login/AuthentificationPage';
-import StudentLogin from './Pages/Login/StudentLogin';
-import EmployerLogin from "./Pages/Login/EmployerLogin";
+  Switch
+} from 'react-router-dom';
 
-function App() {
+/*import Users from './user/pages/Users';
+import NewPlace from './places/pages/NewPlace';
+import UserPlaces from './places/pages/UserPlaces';
+import UpdatePlace from './places/pages/UpdatePlace';
+import Auth from './user/pages/Auth';*/
+import LoginEtudiant from "./user/pages/LoginEtudiant";
+import LoginEmployeur from "./user/pages/LoginEmployeur";
+import InscrireEtudiant from "./user/pages/InscrireEtudiant";
+import InscrireEmployeur from "./user/pages/InscrireEmployeur";
+import AjouterStage from "./Stage/AjouterStages";
+import StagesUser from "./Stage/StagesUser";
+import Stages from "./Stage/Stages";
+import ModifierEtudiant from "./Etudiant/ModifierEtudiant";
+import ModifierEmployeur from './Employeur/ModifierEmployeur';
+import MainNavigation from './shared/Navigation/MainNavigation';
+import { AuthContext } from './shared/context/auth-context';
+
+const App = () => {
+  const [etudiantConnecter, setEtudiantConnecter] = useState(false);
+  const [employeurConnecter, setEmployeurConnecter] = useState(false);
+  const [userId, setUserId] = useState(false);
+
+  const loginetudiant = useCallback((userId) => {
+    setEtudiantConnecter(true);
+    setUserId(userId);
+  }, []);
+
+  const loginemployeur = useCallback((userId) => {
+    setEmployeurConnecter(true);
+    setUserId(userId);
+  }, []);
+
+  const logoutetudiant = useCallback(() => {
+    setEtudiantConnecter(false);
+    setUserId(null);
+  }, []);
+
+  const logoutemployeur = useCallback(() => {
+    setEmployeurConnecter(false);
+    setUserId(null);
+  }, []);
+
+  let routes;
+
+  if (etudiantConnecter) {
+    routes = (
+      <Switch>
+        <Route path="/modifierProfilEtudiant" exact>
+          <ModifierEtudiant />
+        </Route>
+
+        <Route path="/stages" exact>
+          <Stages />
+        </Route>
+
+        <Redirect to="/modifierProfilEtudiant" />
+      </Switch>
+    );
+  } else if (employeurConnecter) {
+    routes = (
+      <Switch>
+
+        <Route path="/modifierProfilEmployeur" exact>
+          <ModifierEmployeur />
+        </Route>
+
+        <Route path="/ajouterStage" exact>
+          <AjouterStage />
+        </Route>
+
+        <Route path="/:userId/mesStages">
+        <StagesUser />
+        </Route>
+
+        <Redirect to="/modifierProfilEmployeur" />
+      </Switch>
+    );
+  }else{
+    routes = (
+      <Switch>
+        <Route path="/" exact>
+          <LoginEtudiant />
+        </Route>
+
+        <Route path="/inscrireEtudiant" exact>
+          <InscrireEtudiant />
+        </Route>
+
+        <Route path="/loginEmployeur" exact>
+          <LoginEmployeur />
+        </Route>
+
+        <Route path="/inscrireEmployeur" exact>
+          <InscrireEmployeur />
+        </Route>
+
+        <Redirect to="/" />
+      </Switch>
+    );
+  }
+
   return (
-    <Router>
-      <MainNavigation />
-      <main>
-        <Switch>
-          
-        <Route exact path="/" component={AuthenticationPage} >
-        <AuthenticationPage />
-        </Route >
-
-        <Route exact path="/" component={AuthenticationPage} />
-          <Route path="/student-login" component={StudentLogin} />
-          <Route path="/employer-login" component={EmployerLogin} />
-          <Route path="/Pages/Stage/Stage" exact>
-            <Stage />
-          </Route >
-          <Route path="/Pages/Etudiant/Etudiant" exact>
-            <Etudiant />
-          </Route >
-          <Route path="/Pages/Employeur/Employeur" exact>
-            <Employeur />
-          </Route >
-          <Route path="/Pages/FAQ" exact>
-            <Faq />
-          </Route>
-          <Route path="/Pages/Competence" exact>
-            <ProfisEtCompetence />
-          </Route >
-          <Route path="/Pages/Deroulement" exact>
-            <DeroulementStageEtudiant />
-          </Route >
-          <Route path="/Pages/Stage" exact>
-            <Stage />
-          </Route >
-          
-          <Redirect path="/" />
-          
-        </Switch>
-      </main>
-      <Footer />
-    </Router>
+    <AuthContext.Provider
+      value={{ etudiantConnecter: etudiantConnecter, employeurConnecter:employeurConnecter, userId:userId, loginetudiant: loginetudiant, loginemployeur:loginemployeur, logoutetudiant: logoutetudiant, logoutemployeur:logoutemployeur }}
+    >
+      <Router>
+        <MainNavigation />
+        <main>{routes}</main>
+      </Router>
+    </AuthContext.Provider>
   );
-}
+};
 
 export default App;

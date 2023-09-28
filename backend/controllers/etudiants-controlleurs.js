@@ -1,4 +1,5 @@
-const Erreur = require("../models/http-erreur");
+const HttpErreur = require("../models/http-erreur");
+const { v4: uuidv4 } = require("uuid");
 
 const Etudiant = require("../models/etudiant");
 const { default: mongoose } = require("mongoose");
@@ -38,7 +39,7 @@ const inscription = async (requete, reponse, next) => {
       }
       reponse
     .status(201)
-    .json({ etudiant: nouvelEtudiant.toObject({ getter: true }) });
+    .json({ etudiant: nouvelEtudiant.toObject({ getters: true }) });
 }
 
 const connexion = async (requete, reponse, next) => {

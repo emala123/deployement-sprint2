@@ -1,4 +1,4 @@
-const Erreur = require("../models/http-erreur");
+const HttpErreur = require("../models/http-erreur");
 
 const Employeur = require("../models/employeur");
 const Stage = require("../models/stage");
@@ -38,7 +38,7 @@ const inscription = async (requete, reponse, next) => {
         await nouvelEmployeur.save();
       } catch (err) {
         console.log(err);
-        return next(new Erreur("Erreur lors de l'ajout de l'employeur", 422));
+        return next(new HttpErreur("Erreur lors de l'ajout de l'employeur", 422));
       }
       reponse
     .status(201)

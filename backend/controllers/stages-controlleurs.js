@@ -3,7 +3,6 @@ const HttpErreur = require("../models/http-erreur");
 
 const Stage = require("../models/stage");
 const Employeur = require("../models/employeur");
-const employeur = require("../models/employeur");
 
 const getToutLesStages = async (requete, reponse, next) => {
     let stages;
@@ -42,7 +41,7 @@ const getStagesEmployeur = async (requete, reponse, next) => {
 
     if (!stages || stages.length === 0) {
         return next(
-          new HttpErreur("Aucune stage trouvé pour l'employeur fourni", 404));
+          new HttpErreur("Aucun stage trouvé pour l'employeur fourni", 404));
     }
 
     reponse.json({
@@ -82,7 +81,7 @@ const ajouterEmployeurStage = async (requete, reponse, next) => {
       }
 
       try {
-
+        console.log("Le stage: " + nouveauStage);
         await nouveauStage.save();
         employeur.stages.push(nouveauStage);
         await employeur.save();
