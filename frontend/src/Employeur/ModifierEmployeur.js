@@ -27,7 +27,7 @@ const ModifierEmployeur = () => {
             event.preventDefault();
             try{
                 const reponseData = await sendRequest(
-                    `http://localhost:5000/employeurs/modifier/${employeurId}`,
+                  process.env.REACT_APP_BACKEND_URL+`/employeurs/modifier/${employeurId}`,
                     'PATCH',
                     JSON.stringify({
                         nomEtreprise: saisieNomEntreprise,

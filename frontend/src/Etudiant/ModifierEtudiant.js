@@ -25,7 +25,7 @@ const ModifierEtudiant = () => {
             event.preventDefault();
             try{
                 const reponseData = await sendRequest(
-                    `http://localhost:5000/etudiants/modifier/${etudiantId}`,
+                    process.env.REACT_APP_BACKEND_URL+`/etudiants/modifier/${etudiantId}`,
                     'PATCH',
                     JSON.stringify({
                         prenom: saisiePrenomEtudiant,
