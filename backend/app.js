@@ -39,7 +39,7 @@ app.use((requete, reponse, next) => {
   
 
   mongoose
-.connect("mongodb+srv://projet:<iuNHgke6ubJBzEpQ>@bigprojet.n0tunuq.mongodb.net/?retryWrites=true&w=majority")
+.connect("mongodb+srv://projet:iuNHgke6ubJBzEpQ@bigprojet.n0tunuq.mongodb.net/?retryWrites=true&w=majority")
 .then(() => {
     app.listen(5000)
     console.log("Connexion à la base de données réussie");
