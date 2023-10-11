@@ -26,7 +26,7 @@ const InscrireEtudiant = () => {
 
     try {
       const reponseData = await sendRequest(
-        process.env.REACT_APP_BACKEND_URL+"etudiants/inscription",
+        `http://localhost:5000/`+"etudiants/inscription",
         "POST",
         JSON.stringify({
           prenom: saisiePrenomEtudiant,
