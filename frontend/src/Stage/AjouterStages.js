@@ -27,7 +27,7 @@ const AjouterStages = () => {
 
         try {
             const reponseData = await sendRequest(
-              `http://localhost:5000/`+`/stages/ajouterStage/${auth.userId}`,
+              `http://localhost:5000/`+`stages/ajouterStage/${auth.userId}`,
                 "POST",
                 JSON.stringify({
                     nom: saisieNomEntreprise,
