@@ -28,7 +28,7 @@ const InscrireEmployeur = () => {
 
     try {
       const reponseData = await sendRequest(
-        "http://localhost:5000/employeurs/inscription",
+        `http://localhost:5000/`+"employeurs/inscription",
         "POST",
         JSON.stringify({
             nomEtreprise: saisieNomEntreprise,

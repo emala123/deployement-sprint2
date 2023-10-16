@@ -23,7 +23,7 @@ const LoginEmployeur = () => {
 
     try{
       const reponseData = await sendRequest(
-        "http://localhost:5000/employeurs/connexion",
+        `http://localhost:5000/`+"employeurs/connexion",
         "POST",
         JSON.stringify({
             courriel: saisieCourrielEmployeur,

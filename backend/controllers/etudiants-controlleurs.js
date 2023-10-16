@@ -2,6 +2,7 @@ const HttpErreur = require("../models/http-erreur");
 const { v4: uuidv4 } = require("uuid");
 
 const Etudiant = require("../models/etudiant");
+const Stage = require("../models/stage");
 const { default: mongoose } = require("mongoose");
 
 const inscription = async (requete, reponse, next) => {
@@ -85,6 +86,47 @@ const updateEtudiant = async (requete, reponse, next) => {
       reponse.status(200).json({ etudiant: etudiant.toObject({ getters: true }) });
 }
 
+const inscrireStage = async (requete, reponse, next) => {
+  const etudiantId = requete.params.etudiantId;
+  const stageId = requete.params.stageId;
+
+  let etudiantExistant;
+  let stageExistant;
+
+  try {
+    etudiantExistant = await Etudiant.findById(etudiantId);
+    stageExistant = await Stage.findById(stageId);
+  }catch{
+    return next(new HttpErreur("Une erreur est survenue!", 422));
+  }
+
+  if(!etudiantExistant){
+    return next(new HttpErreur("Étudiant non trouvé avec ce Id", 401));
+  }
+
+  if(!stageExistant){
+    return next(new HttpErreur("Stage non trouvé avec ce Id", 401));
+}
+
+for(let i = 0 ; i < etudiantExistant.stages.length; i++){
+    if(etudiantExistant.stages[i] == stageId){
+      return next(new HttpErreur("On a deja reçu votre postulation!", 401));
+    }
+}
+
+try{
+  etudiantExistant.stages.push(stageExistant);
+  await etudiantExistant.save();
+  stageExistant.etudiants.push(etudiantExistant);
+  await stageExistant.save();
+}catch{
+  return next(new HttpErreur("Échec dans l'ajout d'un etudiant a un stage et le contraire aussi!", 500))
+}
+
+reponse.json({message: "L'inscription d'un étudiant à un stage a bien été reussi!"});
+}
+
 exports.inscription = inscription;
 exports.connexion = connexion;
 exports.updateEtudiant = updateEtudiant;
+exports.inscrireStage = inscrireStage;

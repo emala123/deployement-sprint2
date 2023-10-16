@@ -21,7 +21,7 @@ const StagesListeUser = () => {
         const stages = async () => {
             try{    
                 const reponseData = await sendRequest(
-                    `http://localhost:5000/stages/${auth.userId}`
+                  `http://localhost:5000/`+`stages/${auth.userId}`
                 );
                 setStagesLoad(reponseData.stages)
             }catch (erreur) {

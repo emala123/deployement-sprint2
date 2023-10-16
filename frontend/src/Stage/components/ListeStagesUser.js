@@ -29,6 +29,7 @@ const ListeStagesUser = props => {
                     remuneration={stage.remuneration}
                 />
             ))}
+            
         </ul>
         </p>
     );

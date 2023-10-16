@@ -22,7 +22,7 @@ const LoginEtudiant = () => {
 
     try{
       const reponseData = await sendRequest(
-        "http://localhost:5000/etudiants/connexion",
+        `http://localhost:5000/`+"etudiants/connexion",
         "POST",
         JSON.stringify({
             courriel: saisieCourrielEtudiant,

@@ -10,4 +10,6 @@ router.post('/connexion', controleursEtudiants.connexion);
 
 router.patch("/modifier/:etudiantId", controleursEtudiants.updateEtudiant);
 
+router.post("/inscrireStage/:stageId/:etudiantId", controleursEtudiants.inscrireStage);
+
 module.exports = router;
