@@ -29,7 +29,7 @@ const ModifierStage = () => {
             event.preventDefault();
             try{
                 const reponseData = await sendRequest(
-                  `http://localhost:5000/`+`stages/modifierStage/${employeurId}/${stageId}`,
+                  process.env.REACT_APP_BACKEND_URL+`stages/modifierStage/${employeurId}/${stageId}`,
                     'PATCH',
                     JSON.stringify({
                       nom: saisieNomEntreprise,

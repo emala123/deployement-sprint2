@@ -19,7 +19,7 @@ const StageUserItem = props => {
         
         try {
             const reponseData = await sendRequest(
-              `http://localhost:5000/stages/supprimerStage/${auth.userId}/${stageId}`,
+              process.env.REACT_APP_BACKEND_URL+`stages/supprimerStage/${auth.userId}/${stageId}`,
                 "DELETE",
                 JSON.stringify({
 

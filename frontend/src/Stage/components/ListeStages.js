@@ -32,7 +32,7 @@ const ListeStages = (props) => {
         try {
 
             const reponseData = await sendRequest(
-                `http://localhost:5000/etudiants/inscrireStage/${stageId}/${auth.userId}`,
+                process.env.REACT_APP_BACKEND_URL+`etudiants/inscrireStage/${stageId}/${auth.userId}`,
                 "POST",
                 JSON.stringify({
                 }),

@@ -21,7 +21,7 @@ const AffichageCandidats = () => {
     const recupererStage = async () => {
       try {
         const reponseData = await sendRequest(
-          `http://localhost:5000/` + `stages/recupererStage/${stageId}`
+          process.env.REACT_APP_BACKEND_URL + `stages/recupererStage/${stageId}`
         );
         setTabEtudiants(reponseData.stage.etudiants);
       } catch (erreur) {
