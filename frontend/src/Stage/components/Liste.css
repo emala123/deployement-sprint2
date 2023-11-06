@@ -20,7 +20,6 @@
 
 
 .listeStage li div {
-    margin-top: 10px;
     padding: 10px;
     background-color: #ffffff;
     border: 1px solid #ddd;
@@ -39,3 +38,32 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+.Liste-Stages {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .Liste-Stages div {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .StageUserItem {
+    font-weight: bold;
+  }
+  
+  .Link-Button {
+    text-decoration: none;
+    color: #007bff;
+    margin-right: 10px;
+  }
+  
+  .Link-Button:hover {
+    text-decoration: underline;
+  }
+  
+  

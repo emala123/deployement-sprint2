@@ -8,7 +8,13 @@ const etudiantSchema = new Schema({
     adresse: {type:String, required:true, unique:true},
     motDePasse: {type: String, required: true},
     telephone: {type:String, required:true, unique: true},
-    stages: [{type:mongoose.Types.ObjectId, required:true, ref:"Stage", unique:true}]
+    postulations: [
+        {
+          stage: { type: mongoose.Types.ObjectId, required:true, ref: "Stage" },
+          datePostulation: { type: Date, required:true, default: Date.now }
+        }
+      ]
+    //stages: [{type:mongoose.Types.ObjectId, required:true, ref:"Stage"}]
 })
 
 module.exports = mongoose.model("Etudiant", etudiantSchema);

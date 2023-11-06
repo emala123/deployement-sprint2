@@ -4,6 +4,8 @@ import { useHistory } from 'react-router-dom';
 import { useHttpClient } from '../shared/hooks/http-hook';
 import { AuthContext } from '../shared/context/auth-context';
 
+import "./AjouterStage.css";   
+
 const AjouterStages = () => {
     const auth = useContext(AuthContext);
     const [saisieNomEntreprise, setSaisieNomEntreprise] = useState("");
@@ -116,7 +118,7 @@ const AjouterStages = () => {
           <br></br>
           <label for="numTelephone">
             {" "}
-            Numéro de téléphone de la personne contact:{" "}
+            Téléphone de la personne contact:{" "}
           </label>
           <input
             type="text"
@@ -141,7 +143,7 @@ const AjouterStages = () => {
             placeholder="Description du stage"
           />
           <br></br>
-          <label for="renumeration">Rémunération :</label>
+          <label for="renumeration">Rémunération :</label><br/>
           <input
             type="number"
             value={saisieRemuneration}

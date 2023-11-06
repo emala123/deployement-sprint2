@@ -12,4 +12,6 @@ router.patch("/modifier/:etudiantId", controleursEtudiants.updateEtudiant);
 
 router.post("/inscrireStage/:stageId/:etudiantId", controleursEtudiants.inscrireStage);
 
+router.get("/recupererEtudiant/:etudiantId", controleursEtudiants.recupererEtudiant);
+
 module.exports = router;

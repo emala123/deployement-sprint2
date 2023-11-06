@@ -108,14 +108,18 @@ const inscrireStage = async (requete, reponse, next) => {
     return next(new HttpErreur("Stage non trouvé avec ce Id", 401));
 }
 
-for(let i = 0 ; i < etudiantExistant.stages.length; i++){
-    if(etudiantExistant.stages[i] == stageId){
+for(let i = 0 ; i < etudiantExistant.postulations.length; i++){
+    if(etudiantExistant.postulations[i].stage == stageId){
       return next(new HttpErreur("On a deja reçu votre postulation!", 401));
     }
 }
 
 try{
-  etudiantExistant.stages.push(stageExistant);
+  etudiantExistant.postulations.push({
+    stage : stageExistant,
+    datePostulation : new Date()
+  });
+  
   await etudiantExistant.save();
   stageExistant.etudiants.push(etudiantExistant);
   await stageExistant.save();
@@ -126,7 +130,26 @@ try{
 reponse.json({message: "L'inscription d'un étudiant à un stage a bien été reussi!"});
 }
 
+const recupererEtudiant = async (requete, reponse, next) => {
+  const etudiantId = requete.params.etudiantId;
+ 
+  let etudiant;
+ 
+  try{
+    etudiant = await Etudiant.findById(etudiantId);
+  }catch (err){
+      return next(new HttpErreur("Erreur lors de la récupération d'un étudiant", 500));
+  }
+ 
+  if (!etudiant) {
+    return next(new HttpErreur("Aucun étudiant trouvée pour l'id fourni", 404));
+  }
+ 
+  reponse.json({ etudiant: etudiant.toObject({ getters: true }) });
+}
+
 exports.inscription = inscription;
 exports.connexion = connexion;
 exports.updateEtudiant = updateEtudiant;
 exports.inscrireStage = inscrireStage;
+exports.recupererEtudiant = recupererEtudiant;
